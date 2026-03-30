@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import IndustriesGallery from "@/components/IndustriesGallery";
+import TrustedBy from "@/components/TrustedBy";
 import CTASection from "@/components/CTASection";
 import { motion } from "framer-motion";
 
@@ -23,6 +24,7 @@ const Industries = () => (
       </section>
 
       <IndustriesGallery />
+      <TrustedBy />
       <CTASection />
     </main>
     <Footer />

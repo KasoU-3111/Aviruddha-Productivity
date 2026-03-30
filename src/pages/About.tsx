@@ -24,7 +24,7 @@ const About = () => (
         </div>
       </section>
 
-      {/* Mission/Vision */}
+      {/* Philosophy */}
       <section className="section-padding">
         <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -43,23 +43,37 @@ const About = () => (
         </div>
       </section>
 
-      {/* Leadership */}
+      {/* Capabilities & Strengths */}
       <section className="section-padding bg-secondary/20">
         <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="font-heading text-3xl font-bold mb-4">Leadership</h2>
-            <h3 className="font-heading text-xl font-semibold text-primary mb-2">Ganesh Jamgaonkar</h3>
-            <p className="text-muted-foreground text-sm mb-4">Director, Aviruddha Productivity Pvt. Ltd.</p>
+            <h2 className="font-heading text-3xl font-bold mb-4">What Sets Us Apart</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              With deep expertise in precision manufacturing and a commitment to engineering-led growth, Ganesh leads the company's vision of becoming a globally recognized manufacturing partner. His hands-on approach to customer relationships and quality standards defines the company culture.
+              With over a decade of experience in precision machining, Aviruddha has built a reputation for delivering complex, high-tolerance components to some of the most demanding industries worldwide. Our facility in Pune is equipped with advanced CNC machining centres, rigorous quality inspection systems, and a team of skilled engineers.
             </p>
-            <a href="https://linkedin.com/in/ganeshjamgaonkar" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-medium">
-              Connect on LinkedIn →
-            </a>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              We specialize in medium-volume, high-mix production—handling diverse materials including stainless steel, Inconel, copper, and specialty alloys. Every project goes through our structured DFM review, pilot batch validation, and multi-stage quality checkpoints before full production begins.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Our capabilities span CNC turning, milling, grinding, and surface finishing (CED, ENP, powder coating), enabling us to deliver fully finished components ready for assembly.
+            </p>
           </div>
           <div>
-            <img src={servicesImg} alt="Quality inspection" loading="lazy" width={1280} height={960} className="rounded-lg w-full h-80 object-cover" />
+            <img src={servicesImg} alt="Quality inspection at Aviruddha facility" loading="lazy" width={1280} height={960} className="rounded-lg w-full h-80 object-cover" />
           </div>
+        </div>
+      </section>
+
+      {/* Global Commitment */}
+      <section className="section-padding">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="font-heading text-3xl font-bold mb-6">Built for Global Standards</h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Aviruddha serves OEMs and industrial manufacturers across India, Europe, and North America. Our quality systems, documentation practices, and engineering communication are aligned with international expectations—ensuring a seamless experience for global partners.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            From first inquiry to final delivery, our structured workflow and transparent communication make us a reliable extension of your engineering team. We don't just manufacture parts—we co-engineer solutions that reduce cost, improve performance, and accelerate your time to market.
+          </p>
         </div>
       </section>
 
