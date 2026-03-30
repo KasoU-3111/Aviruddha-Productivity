@@ -102,7 +102,7 @@ const IndustriesGallery = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">{ind.desc}</p>
 
                 {/* Product tags */}
-                <div className="flex flex-wrap gap-2 mb-5">
+                <div className="flex flex-wrap gap-2 mb-5 mt-auto">
                   {ind.products.map((p) => (
                     <span
                       key={p}

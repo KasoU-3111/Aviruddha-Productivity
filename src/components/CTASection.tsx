@@ -25,12 +25,12 @@ const CTASection = () => (
           >
             Request a Quote
           </Link>
-          <a
-            href="tel:+917420916314"
+          <Link
+            to="/contact"
             className="border border-border text-foreground px-8 py-3.5 rounded font-semibold hover:bg-secondary transition-colors"
           >
-            Call +91 74209 16314
-          </a>
+            Contact Us
+          </Link>
         </div>
       </motion.div>
     </div>
