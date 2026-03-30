@@ -94,7 +94,7 @@ const IndustriesGallery = () => {
                 </span>
               </div>
 
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-3">
                   <ind.icon className="w-5 h-5 text-primary" />
                   <h3 className="font-heading text-lg font-semibold">{ind.title}</h3>
