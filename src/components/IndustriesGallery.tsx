@@ -84,7 +84,7 @@ const IndustriesGallery = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card overflow-hidden group"
+              className="glass-card overflow-hidden group flex flex-col"
             >
               {/* Placeholder image area */}
               <div className="h-48 bg-muted/30 flex items-center justify-center border-b border-border/30 relative overflow-hidden">
@@ -94,7 +94,7 @@ const IndustriesGallery = () => {
                 </span>
               </div>
 
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-3">
                   <ind.icon className="w-5 h-5 text-primary" />
                   <h3 className="font-heading text-lg font-semibold">{ind.title}</h3>
@@ -102,7 +102,7 @@ const IndustriesGallery = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">{ind.desc}</p>
 
                 {/* Product tags */}
-                <div className="flex flex-wrap gap-2 mb-5">
+                <div className="flex flex-wrap gap-2 mb-5 mt-auto">
                   {ind.products.map((p) => (
                     <span
                       key={p}
