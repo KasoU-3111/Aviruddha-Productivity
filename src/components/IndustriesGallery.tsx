@@ -84,7 +84,7 @@ const IndustriesGallery = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card overflow-hidden group"
+              className="glass-card overflow-hidden group flex flex-col"
             >
               {/* Placeholder image area */}
               <div className="h-48 bg-muted/30 flex items-center justify-center border-b border-border/30 relative overflow-hidden">
