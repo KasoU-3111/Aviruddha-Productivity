@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 
 const clients = [
   "Larsen & Toubro (L&T)",
-  "Mahindra Powerol",
   "LEMKEN",
   "Tata Group",
   "Hyundai Steel",
