@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-machining.jpg";
 
@@ -30,25 +29,14 @@ const HeroSection = () => (
           components. From micron-level tolerances to full-scale production—we
           deliver engineering excellence, every time.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link
-            to="/contact"
-            className="bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold text-base hover:bg-primary/90 transition-colors text-center"
-          >
-            Request a Quote
-          </Link>
-          <Link
-            to="/services"
-            className="border border-border text-foreground px-8 py-3.5 rounded font-semibold text-base hover:bg-secondary transition-colors text-center"
-          >
-            Explore Capabilities
-          </Link>
-        </div>
+        <p className="text-primary font-heading text-xl md:text-2xl font-semibold italic mb-8">
+          "Driven by Detail. Defined by Purpose."
+        </p>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-border/40 max-w-lg">
+        <div className="grid grid-cols-3 gap-8 mt-8 pt-8 border-t border-border/40 max-w-lg">
           {[
-            { value: "10+", label: "Years Experience" },
+            { value: "7+", label: "Years Experience" },
             { value: "50+", label: "Global Clients" },
             { value: "±5μm", label: "Precision Tolerance" },
           ].map((stat) => (

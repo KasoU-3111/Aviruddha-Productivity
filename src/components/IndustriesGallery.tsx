@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Car, Droplets, UtensilsCrossed, Factory, Zap, Server } from "lucide-react";
+import { Car, Droplets, UtensilsCrossed, Factory, Cpu } from "lucide-react";
 
 const industries = [
   {
@@ -27,34 +28,14 @@ const industries = [
     products: ["Copper Bus Bars", "Turned Parts", "Custom Extrusions"],
   },
   {
-    icon: Zap,
-    title: "Energy",
-    desc: "Inconel and specialty alloy components for demanding energy sector applications.",
-    products: ["Inconel Parts", "High-Temp Components", "Turbine Parts"],
-  },
-  {
-    icon: Server,
-    title: "Data Centre & Solar",
-    desc: "Copper extrusion components and precision bus bars for power distribution systems.",
-    products: ["Copper Bus Bars", "Connector Parts", "Heat Sinks"],
+    icon: Cpu,
+    title: "Copper Parts",
+    desc: "Copper extrusion components, precision bus bars, and specialty parts for energy, data centre, and solar power distribution systems.",
+    products: ["Copper Bus Bars", "Connector Parts", "Heat Sinks", "Inconel Parts", "High-Temp Components"],
   },
 ];
 
 const IndustriesGallery = () => {
-  const handleOrder = () => {
-    const wip = window.open("", "_blank");
-    if (wip) {
-      wip.document.write(`
-        <!DOCTYPE html>
-        <html><head><title>Aviruddha - Order</title></head>
-        <body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui,sans-serif;">
-          <p style="color:#fff;font-size:1.5rem;text-align:center;">Work In Progress</p>
-        </body></html>
-      `);
-      wip.document.close();
-    }
-  };
-
   return (
     <section className="section-padding">
       <div className="container mx-auto">
@@ -113,12 +94,12 @@ const IndustriesGallery = () => {
                   ))}
                 </div>
 
-                <button
-                  onClick={handleOrder}
-                  className="w-full bg-primary text-primary-foreground py-2.5 rounded text-sm font-semibold hover:bg-primary/90 transition-colors"
+                <Link
+                  to="/contact"
+                  className="w-full bg-primary text-primary-foreground py-2.5 rounded text-sm font-semibold hover:bg-primary/90 transition-colors text-center block"
                 >
-                  Order
-                </button>
+                  Request a Quote
+                </Link>
               </div>
             </motion.div>
           ))}
