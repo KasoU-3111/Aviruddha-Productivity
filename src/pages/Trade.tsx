@@ -272,12 +272,14 @@ const Trade = () => (
               Discover our complete portfolio of premium global engineering
               brands and trade solutions.
             </p>
-            <Link
-              to="/trade"
+            <a
+              href="https://aviruddha-trade.lovable.app"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold hover:bg-primary/90 transition-colors"
             >
               Open Trade Page
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>
