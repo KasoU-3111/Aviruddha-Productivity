@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Link } from "react-router-dom";
+
 import { motion } from "framer-motion";
 import { Eye, Target, Heart, Package } from "lucide-react";
 import sector1 from "@/assets/sector-1.png";
@@ -102,14 +102,6 @@ const Trade = () => (
         </div>
       </section>
 
-      {/* Quote highlight */}
-      <section className="py-12 bg-primary/10 border-y border-primary/20">
-        <div className="container mx-auto text-center">
-          <p className="font-heading text-2xl md:text-3xl font-bold text-primary italic">
-            "Driven by Detail. Defined by Purpose."
-          </p>
-        </div>
-      </section>
 
       {/* Pillars */}
       <section className="section-padding">
@@ -154,7 +146,7 @@ const Trade = () => (
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {products.map((p, i) => (
               <motion.div
                 key={p.brand}
@@ -162,7 +154,7 @@ const Trade = () => (
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="glass-card p-7 flex flex-col"
+                className="glass-card p-7 flex flex-col w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
               >
                 <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
                   <Package className="w-5 h-5 text-primary" />
@@ -280,12 +272,14 @@ const Trade = () => (
               Discover our complete portfolio of premium global engineering
               brands and trade solutions.
             </p>
-            <Link
-              to="/trade"
+            <a
+              href="https://aviruddha-trade.lovable.app"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold hover:bg-primary/90 transition-colors"
             >
               Open Trade Page
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>

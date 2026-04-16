@@ -57,7 +57,7 @@ const IndustriesGallery = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {industries.map((ind, i) => (
             <motion.div
               key={ind.title}
@@ -65,7 +65,7 @@ const IndustriesGallery = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card overflow-hidden group flex flex-col"
+              className="glass-card overflow-hidden group flex flex-col w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
             >
               {/* Placeholder image area */}
               <div className="h-48 bg-muted/30 flex items-center justify-center border-b border-border/30 relative overflow-hidden">
