@@ -57,7 +57,7 @@ const IndustriesGallery = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 [&>*:nth-last-child(2)]:lg:col-start-2 [&>*:nth-last-child(1)]:lg:col-start-3">
           {industries.map((ind, i) => (
             <motion.div
               key={ind.title}
