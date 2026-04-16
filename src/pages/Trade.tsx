@@ -102,14 +102,6 @@ const Trade = () => (
         </div>
       </section>
 
-      {/* Quote highlight */}
-      <section className="py-12 bg-primary/10 border-y border-primary/20">
-        <div className="container mx-auto text-center">
-          <p className="font-heading text-2xl md:text-3xl font-bold text-primary italic">
-            "Driven by Detail. Defined by Purpose."
-          </p>
-        </div>
-      </section>
 
       {/* Pillars */}
       <section className="section-padding">
