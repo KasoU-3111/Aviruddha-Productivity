@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Link } from "react-router-dom";
+
 import { motion } from "framer-motion";
 import { Eye, Target, Heart, Package } from "lucide-react";
 import sector1 from "@/assets/sector-1.png";
