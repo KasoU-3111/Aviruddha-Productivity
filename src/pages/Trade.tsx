@@ -146,7 +146,7 @@ const Trade = () => (
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {products.map((p, i) => (
               <motion.div
                 key={p.brand}
@@ -154,7 +154,7 @@ const Trade = () => (
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="glass-card p-7 flex flex-col"
+                className="glass-card p-7 flex flex-col w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
               >
                 <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
                   <Package className="w-5 h-5 text-primary" />
