@@ -105,7 +105,7 @@ const Trade = () => (
 
       {/* Pillars */}
       <section className="section-padding">
-        <div className="container mx-auto grid md:grid-cols-3 gap-6">
+        <div className="container mx-auto grid md:grid-cols-3 gap-6 items-stretch">
           {pillars.map((p, i) => (
             <motion.div
               key={p.title}
@@ -113,7 +113,7 @@ const Trade = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card p-8 flex flex-col"
+              className="glass-card p-8 flex flex-col h-full"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
                 <p.icon className="w-6 h-6 text-primary" />
