@@ -273,9 +273,7 @@ const Trade = () => (
               brands and trade solutions.
             </p>
             <a
-              href="https://aviruddha-trade.lovable.app"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/trade-portal"
               className="inline-block bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold hover:bg-primary/90 transition-colors"
             >
               Open Trade Page
