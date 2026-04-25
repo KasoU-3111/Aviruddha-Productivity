@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import Process from "./pages/Process";
 import Industries from "./pages/Industries";
 import Trade from "./pages/Trade";
+import TradePortal from "./pages/TradePortal";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/process" element={<Process />} />
           <Route path="/industries" element={<Industries />} />
           <Route path="/trade" element={<Trade />} />
+          <Route path="/trade-portal" element={<TradePortal />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
