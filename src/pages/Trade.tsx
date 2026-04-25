@@ -40,9 +40,9 @@ const products = [
     body: "Product line of internal and external scarfing tools, inserts, ferrite rods, epoxy tubes, impeders, peeling tools and rolls.",
   },
   {
-    brand: "KSW",
-    origin: "Made in Korea",
-    body: "Product line of TCT saw blades for cutting billets and pipes, with a range from diameter 250 mm to 910 mm.",
+    brand: "Kanefusa",
+    origin: "Made in Japan",
+    body: "Precision industrial cutting tools — TCT circular saws, friction blades, industrial knives and tooling for metal, wood and composite processing.",
   },
   {
     brand: "MAQ",
@@ -274,6 +274,8 @@ const Trade = () => (
             </p>
             <a
               href="/trade-portal"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold hover:bg-primary/90 transition-colors"
             >
               Open Trade Page
