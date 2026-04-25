@@ -139,34 +139,55 @@ const brands: Brand[] = [
     ],
   },
   {
-    id: "ksw",
-    name: "KSW",
-    origin: "Made in Korea",
-    tagline: "TCT Saw Blades for Billet & Pipe Cutting",
+    id: "kanefusa",
+    name: "Kanefusa",
+    origin: "Made in Japan",
+    tagline: "Precision Industrial Cutting Tools",
     about:
-      "KSW manufactures large-diameter TCT (tungsten carbide tipped) circular saw blades engineered for high-volume billet, bloom and pipe cutting operations.",
+      "Kanefusa Corporation (Japan) is a world-leading manufacturer of precision industrial cutting tools — TCT circular saws, metal-cutting blades, knives and tooling for wood, metal, paper, plastics and composite processing industries.",
     products: [
       {
-        name: "TCT Blades for Billet Cutting",
+        name: "TCT Circular Saws — Metal Cutting",
         description:
-          "Heavy-duty carbide-tipped saw blades for hot and cold billet cutting in steel plants.",
-        image: "/trade/ksw-tct-billet.jpg",
-        catalog: "/catalogs/ksw-billet.pdf",
-        specs: ["Diameters: 250 – 910 mm", "Hot & cold cutting variants"],
+          "Tungsten-carbide-tipped circular saw blades engineered for high-precision, high-speed cutting of steel pipes, tubes, profiles and solid bars.",
+        image: "/trade/kanefusa-tct-metal.jpg",
+        catalog: "/catalogs/kanefusa-tct-metal.pdf",
+        specs: ["Wide diameter range", "Optimised tooth geometries", "Long service life"],
       },
       {
-        name: "TCT Blades for Pipe & Tube",
+        name: "Carbide-Tipped Saws for Billet & Bloom",
         description:
-          "TCT circular saws for high-speed clean cutting of structural pipes and tubes.",
-        image: "/trade/ksw-tct-pipe.jpg",
-        catalog: "/catalogs/ksw-pipe.pdf",
-        specs: ["Diameters: 250 – 910 mm", "Custom tooth pitch & coatings"],
+          "Heavy-duty TCT saw blades for hot and cold cutting of billets and blooms in steel mills.",
+        image: "/trade/kanefusa-billet.jpg",
+        catalog: "/catalogs/kanefusa-billet.pdf",
+        specs: ["Hot & cold variants", "Custom diameters on request"],
       },
       {
-        name: "Re-Tipping & Re-Sharpening",
+        name: "Friction Saw Blades",
         description:
-          "Carbide re-tipping and precision re-grinding service to extend blade service life.",
-        image: "/trade/ksw-service.jpg",
+          "High-speed friction blades for cutting structural sections and tubes in continuous rolling mills.",
+        image: "/trade/kanefusa-friction.jpg",
+        catalog: "/catalogs/kanefusa-friction.pdf",
+      },
+      {
+        name: "Industrial Knives & Blades",
+        description:
+          "Precision industrial knives for paper, film, plastic, rubber and converting industries.",
+        image: "/trade/kanefusa-knives.jpg",
+        catalog: "/catalogs/kanefusa-knives.pdf",
+      },
+      {
+        name: "Wood & Composite Cutting Tools",
+        description:
+          "TCT and diamond-tipped tools for woodworking, panel processing and composite material cutting.",
+        image: "/trade/kanefusa-wood.jpg",
+        catalog: "/catalogs/kanefusa-wood.pdf",
+      },
+      {
+        name: "Re-Sharpening & Tool Service",
+        description:
+          "Factory-grade re-sharpening, re-tipping and re-conditioning service to restore original tool performance.",
+        image: "/trade/kanefusa-service.jpg",
       },
     ],
   },
