@@ -255,16 +255,20 @@ const Trade = () => (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {customers.map((c, i) => (
               <motion.div
-                key={c}
+                key={c.name}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.04 }}
-                className="glass-card flex items-center justify-center h-28 px-4 text-center"
+                className="bg-white rounded-lg flex items-center justify-center h-28 px-6 hover:shadow-lg transition-shadow"
+                title={c.name}
               >
-                <span className="text-sm font-semibold text-muted-foreground tracking-wide">
-                  {c}
-                </span>
+                <img
+                  src={c.logo}
+                  alt={`${c.name} logo`}
+                  loading="lazy"
+                  className="max-h-20 max-w-full object-contain"
+                />
               </motion.div>
             ))}
           </div>
