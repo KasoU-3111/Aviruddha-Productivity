@@ -78,14 +78,18 @@ const sectors = [
 ];
 
 const customers = [
-  "Tata",
-  "GE (General Electric)",
-  "SAIL (Steel Authority of India Limited)",
-  "Aditya Birla Group",
-  "ALFA LAVAL",
-  "LEMKEN",
-  "Larsen & Toubro (L&T)",
-  "Kalyani Group",
+  { name: "Tata Group", logo: logoTata },
+  { name: "Tata GE", logo: logoTataGe },
+  { name: "SAIL", logo: logoSail },
+  { name: "Aditya Birla Group", logo: logoBirla },
+  { name: "Alfa Laval", logo: logoAlfa },
+  { name: "LEMKEN", logo: logoLemken },
+  { name: "Larsen & Toubro", logo: logoLT },
+  { name: "Kalyani Group", logo: logoKalyani },
+  { name: "Hyundai Steel", logo: logoHyundai },
+  { name: "Brembo", logo: logoBrembo },
+  { name: "AMPCO", logo: logoAmpco },
+  { name: "Bharat Forge", logo: logoBharatForge },
 ];
 
 const Trade = () => (
