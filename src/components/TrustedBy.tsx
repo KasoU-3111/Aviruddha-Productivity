@@ -1,14 +1,30 @@
 import { motion } from "framer-motion";
+import lt from "@/assets/clients/larsen&toubro-logo.jpg";
+import lemken from "@/assets/clients/lemken-logo.jpg";
+import tata from "@/assets/clients/Tata_logo.jpg";
+import tataGe from "@/assets/clients/Tata_GE_logo.jpg";
+import hyundai from "@/assets/clients/Hyundai_steel-logo.jpg";
+import birla from "@/assets/clients/Aditya_Birla_Group_Logo.svg.jpg";
+import brembo from "@/assets/clients/brembo-logo.jpg";
+import ampco from "@/assets/clients/Ampco-logo.jpg";
+import bharatForge from "@/assets/clients/Bharat_Forge-logo.jpg";
+import kalyani from "@/assets/clients/Kalyani_Group_logo.jpg";
+import sail from "@/assets/clients/Sail_Steel_Authority_of_India_logo.jpg";
+import alfa from "@/assets/clients/alfa-laval-logo.jpg";
 
 const clients = [
-  "Larsen & Toubro (L&T)",
-  "LEMKEN",
-  "Tata Group",
-  "Hyundai Steel",
-  "Aditya Birla Group",
-  "Brembo",
-  "AMPCO",
-  "Bharat Forge",
+  { name: "Larsen & Toubro", logo: lt },
+  { name: "LEMKEN", logo: lemken },
+  { name: "Tata Group", logo: tata },
+  { name: "Tata GE", logo: tataGe },
+  { name: "Hyundai Steel", logo: hyundai },
+  { name: "Aditya Birla Group", logo: birla },
+  { name: "Brembo", logo: brembo },
+  { name: "AMPCO", logo: ampco },
+  { name: "Bharat Forge", logo: bharatForge },
+  { name: "Kalyani Group", logo: kalyani },
+  { name: "SAIL", logo: sail },
+  { name: "Alfa Laval", logo: alfa },
 ];
 
 const TrustedBy = () => (
@@ -32,26 +48,26 @@ const TrustedBy = () => (
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {clients.map((name, i) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        {clients.map((c, i) => (
           <motion.div
-            key={name}
+            key={c.name}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className="glass-card flex items-center justify-center h-28 px-4 text-center"
+            transition={{ delay: i * 0.04 }}
+            className="bg-white rounded-lg flex items-center justify-center h-24 px-4 hover:shadow-lg transition-shadow"
+            title={c.name}
           >
-            <span className="text-sm font-semibold text-muted-foreground tracking-wide">
-              {name}
-            </span>
+            <img
+              src={c.logo}
+              alt={`${c.name} logo`}
+              loading="lazy"
+              className="max-h-16 max-w-full object-contain"
+            />
           </motion.div>
         ))}
       </div>
-
-      <p className="text-center text-xs text-muted-foreground/60 mt-6">
-        Logos coming soon — placeholder labels shown
-      </p>
     </div>
   </section>
 );
