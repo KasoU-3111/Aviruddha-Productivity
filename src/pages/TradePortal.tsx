@@ -423,6 +423,7 @@ const ProductCard = ({
 
 const TradePortal = () => {
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -437,13 +438,55 @@ const TradePortal = () => {
     document.getElementById("inquiry")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const submitInquiry = (e: React.FormEvent) => {
+  const submitInquiry = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Inquiry received",
-      description: "Thank you — our team will get back to you shortly.",
-    });
-    setForm({ name: "", company: "", email: "", phone: "", product: "", message: "" });
+    setLoading(true);
+
+    // Identify the brand based on product
+    let brandName = "Trade Inquiry";
+    for (const b of brands) {
+        if (b.categories.some(cat => cat.products.some(p => p.name === form.product))) {
+            brandName = b.name;
+            break;
+        }
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/trade-inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          brand: brandName,
+          product_name: form.product,
+          quantity: 1, // Defaulting to 1 for generic inquiry
+          message: `${form.company ? `Company: ${form.company}. ` : ""}${form.message}`,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Inquiry received",
+          description: "Thank you — our team will get back to you shortly.",
+        });
+        setForm({ name: "", company: "", email: "", phone: "", product: "", message: "" });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to send inquiry. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (err) {
+      toast({
+        title: "Connection Error",
+        description: "Could not connect to server. Is the backend running?",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const scrollToProducts = () => {
@@ -628,6 +671,7 @@ const TradePortal = () => {
                   />
                 </div>
                 <Input
+                  required
                   placeholder="Product of interest"
                   value={form.product}
                   onChange={(e) => setForm({ ...form, product: e.target.value })}
@@ -640,10 +684,11 @@ const TradePortal = () => {
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                 />
                 <button
+                  disabled={loading}
                   type="submit"
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold hover:bg-primary/90 transition-colors"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4" /> Submit Inquiry
+                  <Send className="w-4 h-4" /> {loading ? "Sending..." : "Submit Inquiry"}
                 </button>
               </form>
             </motion.div>

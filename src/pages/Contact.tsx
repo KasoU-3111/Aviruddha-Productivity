@@ -3,13 +3,48 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Linkedin, Clock } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+
+    // Collect data from the form
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      company: formData.get("company"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      service_type: formData.get("service_type"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/quote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        toast.success("Quote request submitted successfully!");
+      } else {
+        toast.error("Failed to submit. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Connection error. Is the backend server running?");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -35,33 +70,56 @@ const Contact = () => {
                   <div className="glass-card p-8 text-center">
                     <h3 className="font-heading text-xl font-bold text-primary mb-2">Thank You!</h3>
                     <p className="text-muted-foreground">We've received your inquiry and will respond within 24 hours.</p>
+                    <button 
+                      onClick={() => setSubmitted(false)}
+                      className="mt-4 text-primary text-sm font-medium hover:underline"
+                    >
+                      Send another inquiry
+                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="glass-card p-8 space-y-5">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Name *</label>
-                        <input required type="text" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Your name" />
+                        <input name="name" required type="text" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Your name" />
                       </div>
                       <div>
                         <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Company</label>
-                        <input type="text" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Company name" />
+                        <input name="company" type="text" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Company name" />
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Email *</label>
+                        <input name="email" required type="email" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="your@email.com" />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Phone</label>
+                        <input name="phone" type="tel" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="+91 XXXXX XXXXX" />
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Email *</label>
-                      <input required type="email" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="your@email.com" />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Phone</label>
-                      <input type="tel" className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" placeholder="+91 XXXXX XXXXX" />
+                      <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Service Interest *</label>
+                      <select name="service_type" required className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary">
+                        <option value="">Select a service</option>
+                        <option value="CNC Machining">CNC Machining</option>
+                        <option value="Precision Turning">Precision Turning</option>
+                        <option value="Grinding">Grinding</option>
+                        <option value="Surface Finishing">Surface Finishing</option>
+                        <option value="Trade Inquiry">Trade/Brand Inquiry</option>
+                      </select>
                     </div>
                     <div>
                       <label className="text-sm font-medium text-foreground/80 mb-1.5 block">Requirements *</label>
-                      <textarea required rows={4} className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none" placeholder="Describe your component requirements, quantities, materials..." />
+                      <textarea name="message" required rows={4} className="w-full bg-muted border border-border rounded px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none" placeholder="Describe your component requirements, quantities, materials..." />
                     </div>
-                    <button type="submit" className="w-full bg-primary text-primary-foreground py-3 rounded font-semibold hover:bg-primary/90 transition-colors">
-                      Submit Inquiry
+                    <button 
+                      disabled={loading}
+                      type="submit" 
+                      className="w-full bg-primary text-primary-foreground py-3 rounded font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    >
+                      {loading ? "Submitting..." : "Submit Inquiry"}
                     </button>
                   </form>
                 )}
