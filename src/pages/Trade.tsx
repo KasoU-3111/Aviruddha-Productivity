@@ -9,6 +9,18 @@ import sector3 from "@/assets/sector-3.png";
 import sector4 from "@/assets/sector-4.png";
 import sector5 from "@/assets/sector-5.png";
 import sector6 from "@/assets/sector-6.png";
+import logoTata from "@/assets/clients/Tata_logo.jpg";
+import logoTataGe from "@/assets/clients/Tata_GE_logo.jpg";
+import logoSail from "@/assets/clients/Sail_Steel_Authority_of_India_logo.jpg";
+import logoBirla from "@/assets/clients/Aditya_Birla_Group_Logo.svg.jpg";
+import logoAlfa from "@/assets/clients/alfa-laval-logo.jpg";
+import logoLemken from "@/assets/clients/lemken-logo.jpg";
+import logoLT from "@/assets/clients/larsen&toubro-logo.jpg";
+import logoKalyani from "@/assets/clients/Kalyani_Group_logo.jpg";
+import logoHyundai from "@/assets/clients/Hyundai_steel-logo.jpg";
+import logoBrembo from "@/assets/clients/brembo-logo.jpg";
+import logoAmpco from "@/assets/clients/Ampco-logo.jpg";
+import logoBharatForge from "@/assets/clients/Bharat_Forge-logo.jpg";
 
 const pillars = [
   {
