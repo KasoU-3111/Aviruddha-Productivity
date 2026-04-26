@@ -9,6 +9,18 @@ import sector3 from "@/assets/sector-3.png";
 import sector4 from "@/assets/sector-4.png";
 import sector5 from "@/assets/sector-5.png";
 import sector6 from "@/assets/sector-6.png";
+import logoTata from "@/assets/clients/Tata_logo.jpg";
+import logoTataGe from "@/assets/clients/Tata_GE_logo.jpg";
+import logoSail from "@/assets/clients/Sail_Steel_Authority_of_India_logo.jpg";
+import logoBirla from "@/assets/clients/Aditya_Birla_Group_Logo.svg.jpg";
+import logoAlfa from "@/assets/clients/alfa-laval-logo.jpg";
+import logoLemken from "@/assets/clients/lemken-logo.jpg";
+import logoLT from "@/assets/clients/larsen&toubro-logo.jpg";
+import logoKalyani from "@/assets/clients/Kalyani_Group_logo.jpg";
+import logoHyundai from "@/assets/clients/Hyundai_steel-logo.jpg";
+import logoBrembo from "@/assets/clients/brembo-logo.jpg";
+import logoAmpco from "@/assets/clients/Ampco-logo.jpg";
+import logoBharatForge from "@/assets/clients/Bharat_Forge-logo.jpg";
 
 const pillars = [
   {
@@ -66,14 +78,18 @@ const sectors = [
 ];
 
 const customers = [
-  "Tata",
-  "GE (General Electric)",
-  "SAIL (Steel Authority of India Limited)",
-  "Aditya Birla Group",
-  "ALFA LAVAL",
-  "LEMKEN",
-  "Larsen & Toubro (L&T)",
-  "Kalyani Group",
+  { name: "Tata Group", logo: logoTata },
+  { name: "Tata GE", logo: logoTataGe },
+  { name: "SAIL", logo: logoSail },
+  { name: "Aditya Birla Group", logo: logoBirla },
+  { name: "Alfa Laval", logo: logoAlfa },
+  { name: "LEMKEN", logo: logoLemken },
+  { name: "Larsen & Toubro", logo: logoLT },
+  { name: "Kalyani Group", logo: logoKalyani },
+  { name: "Hyundai Steel", logo: logoHyundai },
+  { name: "Brembo", logo: logoBrembo },
+  { name: "AMPCO", logo: logoAmpco },
+  { name: "Bharat Forge", logo: logoBharatForge },
 ];
 
 const Trade = () => (
@@ -239,16 +255,20 @@ const Trade = () => (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {customers.map((c, i) => (
               <motion.div
-                key={c}
+                key={c.name}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.04 }}
-                className="glass-card flex items-center justify-center h-28 px-4 text-center"
+                className="bg-white rounded-lg flex items-center justify-center h-28 px-6 hover:shadow-lg transition-shadow"
+                title={c.name}
               >
-                <span className="text-sm font-semibold text-muted-foreground tracking-wide">
-                  {c}
-                </span>
+                <img
+                  src={c.logo}
+                  alt={`${c.name} logo`}
+                  loading="lazy"
+                  className="max-h-20 max-w-full object-contain"
+                />
               </motion.div>
             ))}
           </div>
