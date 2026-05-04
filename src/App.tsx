@@ -27,7 +27,9 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/process" element={<Process />} />
           <Route path="/industries" element={<Industries />} />
-          <Route path="/trade" element={<Trade />} />
+          {/* This is the landing page that Navbar points to */}
+          <Route path="/trade" element={<Trade />} /> 
+          {/* This is the portal page opened from the button */}
           <Route path="/trade-portal" element={<TradePortal />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

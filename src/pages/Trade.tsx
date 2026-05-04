@@ -275,7 +275,7 @@ const Trade = () => (
         </div>
       </section>
 
-      {/* Single CTA */}
+      {/* Single CTA Section */}
       <section className="section-padding">
         <div className="container mx-auto">
           <motion.div
@@ -292,8 +292,11 @@ const Trade = () => (
               Discover our complete portfolio of premium global engineering
               brands and trade solutions.
             </p>
+            {/* CRITICAL FIX: href must be prefixed with #/ for HashRouter
+                to work when opening in a new tab.
+            */}
             <a
-              href="/trade-portal"
+              href="#/trade-portal"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-primary text-primary-foreground px-8 py-3.5 rounded font-semibold hover:bg-primary/90 transition-colors"
