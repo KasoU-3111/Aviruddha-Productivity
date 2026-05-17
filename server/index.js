@@ -13,9 +13,12 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-// Setup Email Transporter
+// Setup Email Transporter - 🌏 PRODUCTION FIX: Configured for Secure SSL Port 465 to bypass cloud timeouts
 const transporter = nodemailer.createTransport({
   service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true, // true for port 465, false for other ports
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS, // Your 16-digit App Password
