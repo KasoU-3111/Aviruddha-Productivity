@@ -452,7 +452,10 @@ const TradePortal = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/trade-inquiry", {
+      // 🌏 PRODUCTION FIX: Dynamically targets Render API when live, or fallback to local port
+      const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+      const response = await fetch(`${API_BASE_URL}/api/trade-inquiry`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -528,15 +531,15 @@ const TradePortal = () => {
                 technical service and after-sales support.
               </p>
 
+              {/* 🌏 UPDATE FIX: Removed clickable properties from the brand badges to stop 404 errors */}
               <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {brands.map((b) => (
-                  <a
+                  <span
                     key={b.id}
-                    href={`#${b.id}`}
-                    className="px-4 py-2 rounded-full border border-border bg-card/50 backdrop-blur text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+                    className="px-4 py-2 rounded-full border border-border bg-card/50 backdrop-blur text-sm font-medium select-none text-muted-foreground"
                   >
                     {b.name}
-                  </a>
+                  </span>
                 ))}
               </div>
 
