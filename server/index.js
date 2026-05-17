@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
 const nodemailer = require('nodemailer');
+const path = require('path'); // 👈 REQUIRED: Node's native utility for cross-platform file paths
 require('dotenv').config();
 
 const app = express();
@@ -21,8 +22,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// For testing, this is your dummy mail
-const RECIPIENT_EMAIL = 'narangkale722@gmail.com'; 
+// 🌏 PRODUCTION FIX: Dynamically falls back to standard recipient if variable isn't injected yet
+const RECIPIENT_EMAIL = process.env.RECEIVER_EMAIL || 'info@aviruddha.com'; 
 
 // Catalog Mapping - Mapping Brand names to your actual file names
 const catalogMapping = {
@@ -32,8 +33,9 @@ const catalogMapping = {
   "La-Co Markal": "markal-catalog.pdf"
 };
 
-// Base path for your catalogs
-const CATALOG_BASE_PATH = `C:\\VSCode\\Code\\Aviruddha-Website\\Aviruddha-Productivity\\src\\assets\\catelogs\\`;
+// 🌏 PRODUCTION FIX: Targets a "catalogs" folder sitting directly inside the server folder. 
+// Works perfectly on both Windows (locally) and Linux (on Render cloud).
+const CATALOG_BASE_PATH = path.join(__dirname, 'catalogs', path.sep);
 
 // Route 1: Main Website Quote
 app.post('/api/quote', async (req, res) => {
@@ -139,4 +141,6 @@ app.post('/api/trade-inquiry', async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log('Server running on port 5000 with Catalog Automation'));
+// Production fallbacks for port handling on cloud infrastructures
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT} with Catalog Automation`));
