@@ -18,18 +18,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // PRODUCTION FIX: Falls back to standard recipient if variable isn't injected yet
 const RECIPIENT_EMAIL = process.env.RECEIVER_EMAIL || 'shouryadhondwad1113@gmail.com';
- 
 
-// Catalog Mapping - Brand names matched to file names
+// Catalog Mapping - 🌏 PRODUCTION UPGRADE: Bound to public raw GitHub CDN links for Resend compliance
 const catalogMapping = {
-  "Saar-Hartmetall": "saar-catalog.pdf",
-  "Kanefusa": "kanefusa-catalog.pdf",
-  "MAQ": "maq-catalog.pdf",
-  "La-Co Markal": "markal-catalog.pdf"
+  "Saar-Hartmetall": "https://raw.githubusercontent.com/Kasou-3111/Aviruddha-Productivity/main/server/catalogs/saar-catalog.pdf",
+  "Kanefusa": "https://raw.githubusercontent.com/Kasou-3111/Aviruddha-Productivity/main/server/catalogs/kanefusa-catalog.pdf",
+  "MAQ": "https://raw.githubusercontent.com/Kasou-3111/Aviruddha-Productivity/main/server/catalogs/maq-catalog.pdf",
+  "La-Co Markal": "https://raw.githubusercontent.com/Kasou-3111/Aviruddha-Productivity/main/server/catalogs/markal-catalog.pdf"
 };
-
-// Cross-platform asset distribution path
-const CATALOG_BASE_PATH = path.join(__dirname, 'catalogs', path.sep);
 
 // Route 1: Main Website Quote
 app.post('/api/quote', async (req, res) => {
@@ -42,7 +38,7 @@ app.post('/api/quote', async (req, res) => {
 
     // Send through Resend HTTP API Client (Bypasses all cloud port blocks)
     await resend.emails.send({
-      from:'onboarding@resend.dev',
+      from: 'onboarding@resend.dev',
       to: RECIPIENT_EMAIL,
       subject: `🛠️ New Quote Request: ${name} | ${company || 'Individual'}`,
       html: `
@@ -98,12 +94,15 @@ app.post('/api/trade-inquiry', async (req, res) => {
     });
 
     // 3. Auto-Reply to Customer with Catalog Attachment via Resend
-    const catalogFile = catalogMapping[brand];
+    const catalogUrl = catalogMapping[brand];
     
-    if (catalogFile) {
+    if (catalogUrl) {
+      // Extract clean filename from the URL structure (e.g., "saar-catalog.pdf")
+      const filename = catalogUrl.substring(catalogUrl.lastIndexOf('/') + 1);
+
       await resend.emails.send({
-        from: 'Aviruddha Productivity <onboarding@resend.dev>',
-        to: email, // Free tier allows sending to your own verified login/sandbox targets
+        from: 'onboarding@resend.dev', // Simplified sandbox sender profile to prevent validation drops
+        to: email, // Note: Free sandboxes can only drop mail to your own verified dashboard account targets
         subject: `Requested Catalog: ${brand} Portfolio`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px;">
@@ -117,12 +116,12 @@ app.post('/api/trade-inquiry', async (req, res) => {
         `,
         attachments: [
           {
-            filename: catalogFile,
-            path: `${CATALOG_BASE_PATH}${catalogFile}`
+            filename: filename, // Clean display name shown to user
+            path: catalogUrl     // Direct public internet URL download resource
           }
         ]
       });
-      console.log(`Catalog auto-sent to customer via Resend API: ${email}`);
+      console.log(`Catalog auto-sent to customer via Resend API CDN link: ${email}`);
     }
 
     res.status(201).json({ success: true, data: result.rows[0] });
