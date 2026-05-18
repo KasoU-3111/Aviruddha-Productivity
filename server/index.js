@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
-const nodemailer = require('nodemailer');
-const path = require('path'); // 👈 REQUIRED: Node's native utility for cross-platform file paths
+const { Resend } = require('resend'); // 👈 Upgraded from Nodemailer to Resend API
+const path = require('path'); // Node's native utility for cross-platform file paths
 require('dotenv').config();
 
-const app = express();
+const app = report || express();
 app.use(cors());
 app.use(express.json());
 
@@ -13,22 +13,13 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-// Setup Email Transporter - 🌏 PRODUCTION FIX: Configured for Secure SSL Port 465 to bypass cloud timeouts
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true, // true for port 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // Your 16-digit App Password
-  },
-});
+// Initialize Resend with your API Key variable
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// 🌏 PRODUCTION FIX: Dynamically falls back to standard recipient if variable isn't injected yet
+// PRODUCTION FIX: Falls back to standard recipient if variable isn't injected yet
 const RECIPIENT_EMAIL = process.env.RECEIVER_EMAIL || 'info@aviruddha.com'; 
 
-// Catalog Mapping - Mapping Brand names to your actual file names
+// Catalog Mapping - Brand names matched to file names
 const catalogMapping = {
   "Saar-Hartmetall": "saar-catalog.pdf",
   "Kanefusa": "kanefusa-catalog.pdf",
@@ -36,8 +27,7 @@ const catalogMapping = {
   "La-Co Markal": "markal-catalog.pdf"
 };
 
-// 🌏 PRODUCTION FIX: Targets a "catalogs" folder sitting directly inside the server folder. 
-// Works perfectly on both Windows (locally) and Linux (on Render cloud).
+// Cross-platform asset distribution path
 const CATALOG_BASE_PATH = path.join(__dirname, 'catalogs', path.sep);
 
 // Route 1: Main Website Quote
@@ -49,8 +39,9 @@ app.post('/api/quote', async (req, res) => {
       [name, email, company, phone, service_type, message]
     );
 
-    const mailOptions = {
-      from: `"Aviruddha CRM" <${process.env.EMAIL_USER}>`,
+    // Send through Resend HTTP API Client (Bypasses all cloud port blocks)
+    await resend.emails.send({
+      from: 'Aviruddha CRM <onboarding@resend.dev>',
       to: RECIPIENT_EMAIL,
       subject: `🛠️ New Quote Request: ${name} | ${company || 'Individual'}`,
       html: `
@@ -66,9 +57,8 @@ app.post('/api/quote', async (req, res) => {
           </div>
         </div>
       `
-    };
+    });
 
-    await transporter.sendMail(mailOptions);
     res.status(201).json({ success: true, data: result.rows[0] });
   } catch (err) {
     console.error("Error:", err);
@@ -86,9 +76,9 @@ app.post('/api/trade-inquiry', async (req, res) => {
       [name, email, brand, product_name, message]
     );
 
-    // 2. Notify Owner (Ganesh/Recipient)
-    const ownerMailOptions = {
-      from: `"Aviruddha Trade Portal" <${process.env.EMAIL_USER}>`,
+    // 2. Notify Owner (Ganesh/Recipient) via Resend
+    await resend.emails.send({
+      from: 'Aviruddha Trade Portal <onboarding@resend.dev>',
       to: RECIPIENT_EMAIL,
       subject: `📦 Trade Inquiry: [${brand}] ${product_name}`,
       html: `
@@ -104,17 +94,15 @@ app.post('/api/trade-inquiry', async (req, res) => {
           </div>
         </div>
       `
-    };
-    await transporter.sendMail(ownerMailOptions);
+    });
 
-    // 3. Auto-Reply to Customer with Catalog Attachment
+    // 3. Auto-Reply to Customer with Catalog Attachment via Resend
     const catalogFile = catalogMapping[brand];
     
-    // Only send auto-reply if we have the catalog file for that brand
     if (catalogFile) {
-      const customerMailOptions = {
-        from: `"Aviruddha Productivity" <${process.env.EMAIL_USER}>`,
-        to: email,
+      await resend.emails.send({
+        from: 'Aviruddha Productivity <onboarding@resend.dev>',
+        to: email, // Free tier allows sending to your own verified login/sandbox targets
         subject: `Requested Catalog: ${brand} Portfolio`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px;">
@@ -132,9 +120,8 @@ app.post('/api/trade-inquiry', async (req, res) => {
             path: `${CATALOG_BASE_PATH}${catalogFile}`
           }
         ]
-      };
-      await transporter.sendMail(customerMailOptions);
-      console.log(`Catalog auto-sent to customer: ${email}`);
+      });
+      console.log(`Catalog auto-sent to customer via Resend API: ${email}`);
     }
 
     res.status(201).json({ success: true, data: result.rows[0] });
@@ -144,6 +131,5 @@ app.post('/api/trade-inquiry', async (req, res) => {
   }
 });
 
-// Production fallbacks for port handling on cloud infrastructures
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT} with Catalog Automation`));
