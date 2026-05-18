@@ -17,7 +17,7 @@ const pool = new Pool({
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // PRODUCTION FIX: Falls back to standard recipient if variable isn't injected yet
-const RECIPIENT_EMAIL = process.env.RECEIVER_EMAIL || 'info@aviruddha.com'; 
+const RECIPIENT_EMAIL = process.env.RECEIVER_EMAIL || 'shouryadhondwad1113@gmail.com'; 
 
 // Catalog Mapping - Brand names matched to file names
 const catalogMapping = {
@@ -41,7 +41,7 @@ app.post('/api/quote', async (req, res) => {
 
     // Send through Resend HTTP API Client (Bypasses all cloud port blocks)
     await resend.emails.send({
-      from: 'Aviruddha CRM <onboarding@resend.dev>',
+      from:'onboarding@resend.dev',
       to: RECIPIENT_EMAIL,
       subject: `🛠️ New Quote Request: ${name} | ${company || 'Individual'}`,
       html: `
@@ -78,7 +78,7 @@ app.post('/api/trade-inquiry', async (req, res) => {
 
     // 2. Notify Owner (Ganesh/Recipient) via Resend
     await resend.emails.send({
-      from: 'Aviruddha Trade Portal <onboarding@resend.dev>',
+      from: 'onboarding@resend.dev',
       to: RECIPIENT_EMAIL,
       subject: `📦 Trade Inquiry: [${brand}] ${product_name}`,
       html: `
