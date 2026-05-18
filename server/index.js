@@ -5,7 +5,7 @@ const { Resend } = require('resend'); // 👈 Upgraded from Nodemailer to Resend
 const path = require('path'); // Node's native utility for cross-platform file paths
 require('dotenv').config();
 
-const app = report || express();
+const app = express();
 app.use(cors());
 app.use(express.json());
 
