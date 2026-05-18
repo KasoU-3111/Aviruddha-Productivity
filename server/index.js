@@ -17,7 +17,8 @@ const pool = new Pool({
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // PRODUCTION FIX: Falls back to standard recipient if variable isn't injected yet
-const RECIPIENT_EMAIL = process.env.RECEIVER_EMAIL || 'shouryadhondwad1113@gmail.com'; 
+const RECIPIENT_EMAIL = process.env.RECEIVER_EMAIL || 'shouryadhondwad1113@gmail.com';
+ 
 
 // Catalog Mapping - Brand names matched to file names
 const catalogMapping = {
