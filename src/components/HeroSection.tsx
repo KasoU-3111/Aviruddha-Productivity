@@ -10,13 +10,23 @@ const HeroSection = () => (
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
     </div>
 
-    <div className="container mx-auto px-4 relative z-10 pt-20">
+    <div className="container mx-auto px-4 relative z-10 pt-24 md:pt-28">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="max-w-3xl"
       >
+        {/* 🚀 Plain & Simple Corporate Header String Integration */}
+        <div className="flex items-baseline gap-2 mb-6 select-none">
+          <span className="font-heading text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase">
+            AVIRUDDHA
+          </span>
+          <span className="text-muted-foreground text-sm md:text-base font-normal tracking-[0.3em] uppercase opacity-80">
+            PRODUCTIVITY
+          </span>
+        </div>
+
         <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">
           Precision Engineering & Manufacturing
         </p>

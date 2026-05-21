@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImg from "@/assets/logo-main-nobg.png";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -20,16 +21,20 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/40">
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-heading text-xl md:text-2xl font-bold text-foreground">
-            AVIRUDDHA
-          </span>
-          <span className="hidden sm:inline text-muted-foreground text-xs tracking-widest uppercase">
-            Productivity
-          </span>
+        
+        {/* 🚀 Perfected & High-Contrast Logo Layout */}
+        <Link to="/" className="flex items-center relative group">
+          {/* Subtle Ambient Glow Panel behind the logo asset */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-primary/10 rounded-full blur-lg transition-opacity group-hover:opacity-100" />
+          
+          <img 
+            src={logoImg} 
+            alt="Aviruddha Home" 
+            className="w-16 h-16 md:w-20 md:h-20 object-contain filter drop-shadow-[0_0_8px_rgba(var(--primary),0.4)] drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] transition-transform group-hover:scale-105"
+          />
         </Link>
 
-        {/* Desktop */}
+        {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -77,7 +82,7 @@ const Navbar = () => {
                   onClick={() => setOpen(false)}
                   className={`text-sm font-medium py-2 transition-colors hover:text-primary ${
                     location.pathname === link.to ? "text-primary" : "text-muted-foreground"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
