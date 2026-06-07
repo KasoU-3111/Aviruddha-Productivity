@@ -40,16 +40,11 @@ const Footer = () => (
             Contact
           </h4>
           <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-            <div className="flex items-start gap-2">
-              <Phone className="w-4 h-4 mt-0.5 text-primary shrink-0" />
-              <a href="tel:+917420916314" className="hover:text-primary transition-colors">
-                +91 74209 16314
-              </a>
-            </div>
+            
             <div className="flex items-start gap-2">
               <Mail className="w-4 h-4 mt-0.5 text-primary shrink-0" />
-              <a href="mailto:ganesh@aviruddha.com" className="hover:text-primary transition-colors">
-                ganesh@aviruddha.com
+              <a href="mailto:info@aviruddha.com" className="hover:text-primary transition-colors">
+                info@aviruddha.com
               </a>
             </div>
             <div className="flex items-start gap-2">

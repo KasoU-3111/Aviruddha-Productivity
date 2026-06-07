@@ -137,8 +137,7 @@ const Contact = () => {
 
                 <div className="space-y-4">
                   {[
-                    { icon: Phone, label: "+91 74209 16314", href: "tel:+917420916314" },
-                    { icon: Mail, label: "ganesh@aviruddha.com", href: "mailto:ganesh@aviruddha.com" },
+                    { icon: Mail, label: "info@aviruddha.com", href: "mailto:info@aviruddha.com" },
                     { icon: Linkedin, label: "LinkedIn Profile", href: "https://linkedin.com/in/ganeshjamgaonkar" },
                   ].map((c) => (
                     <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">

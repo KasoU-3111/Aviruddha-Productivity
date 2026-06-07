@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Car, Droplets, UtensilsCrossed, Factory, Cpu } from "lucide-react";
+import { Car, Droplets, UtensilsCrossed, Factory, Cpu, Wrench } from "lucide-react";
 import imgAutomotive from "@/assets/industries/automotive.jpg";
 import imgFluid from "@/assets/industries/fluid-handling.jpg";
 import imgFood from "@/assets/industries/food-processing.jpg";
 import imgIndustrial from "@/assets/industries/industrial-equipment.jpg";
 import imgCopper from "@/assets/industries/copper-parts.jpg";
+// import imgResharpening from "@/assets/industries/resharpening.jpg"; // Asset path for the new service
 
 const industries = [
   {
@@ -42,6 +43,13 @@ const industries = [
     title: "Copper Parts",
     desc: "Copper extrusion components, precision bus bars, and specialty parts for energy, data centre, and solar power distribution systems.",
     products: ["Copper Bus Bars", "Connector Parts", "Heat Sinks", "Inconel Parts", "High-Temp Components"],
+  },
+  {
+    icon: Wrench,
+    // image: imgResharpening,
+    title: "Resharpening Trade",
+    desc: "Factory-grade re-sharpening, re-tipping, and re-conditioning services to restore premium industrial cutting tools to original OEM performance specifications.",
+    products: ["TCT Saw Re-Sharpening", "Re-Tipping Service", "Tool Re-Conditioning", "Performance Calibration"],
   },
 ];
 

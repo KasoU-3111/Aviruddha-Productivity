@@ -33,7 +33,7 @@ import saarImpeders from "@/assets/trade/saar/impeders.png";
 import saarPeeling from "@/assets/trade/saar/peeling.jpg";
 import saarRolls from "@/assets/trade/saar/forming-rolls.jpg";
 
-// Kanefusa
+// Keeping the original physical paths so Vite compiles successfully
 import kanefusaTct from "@/assets/trade/kanefusa/tct.jpg";
 import kanefusaBillet from "@/assets/trade/kanefusa/billet-bloom.jpg";
 import kanefusaFriction from "@/assets/trade/kanefusa/friction.jpg";
@@ -198,12 +198,12 @@ const brands: Brand[] = [
     ],
   },
   {
-    id: "kanefusa",
-    name: "Kanefusa",
+    id: "kanefusa", // Kept ID consistent to avoid breaking layout anchors
+    name: "KSW", // Displays KSW on the website
     origin: "Made in Japan",
     tagline: "Precision Industrial Cutting Tools",
     about:
-      "Kanefusa Corporation (Japan) is a world-leading manufacturer of precision industrial cutting tools — TCT circular saws, metal-cutting blades, knives and tooling for wood, metal, paper, plastics and composite processing industries.",
+      "KSW (Japan) is a world-leading manufacturer of precision industrial cutting tools — TCT circular saws, metal-cutting blades, knives and tooling for wood, metal, paper, plastics and composite processing industries.",
     categories: [
       {
         title: "Precision Cutting Tools",
@@ -452,7 +452,6 @@ const TradePortal = () => {
     }
 
     try {
-      // 🌏 PRODUCTION FIX: Dynamically targets Render API when live, or fallback to local port
       const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
       const response = await fetch(`${API_BASE_URL}/api/trade-inquiry`, {
@@ -463,7 +462,7 @@ const TradePortal = () => {
           email: form.email,
           brand: brandName,
           product_name: form.product,
-          quantity: 1, // Defaulting to 1 for generic inquiry
+          quantity: 1, 
           message: `${form.company ? `Company: ${form.company}. ` : ""}${form.message}`,
         }),
       });
@@ -531,7 +530,6 @@ const TradePortal = () => {
                 technical service and after-sales support.
               </p>
 
-              {/* 🌏 UPDATE FIX: Removed clickable properties from the brand badges to stop 404 errors */}
               <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {brands.map((b) => (
                   <span

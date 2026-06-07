@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 const reasons = [
   "Micron-level precision with tolerances up to ±5μm",
   "DFM-led co-engineering for cost-optimized designs",
-  "IATF-compliant quality systems and documentation",
+  "IATF-certified quality systems and documentation",
   "Multi-material expertise: steel, SS, Inconel, copper",
   "Transparent communication and milestone-based updates",
   "End-to-end capability from prototype to production",

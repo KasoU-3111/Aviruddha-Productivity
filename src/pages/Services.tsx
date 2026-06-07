@@ -11,7 +11,7 @@ const capabilities = [
   { title: "Surface Finishing", desc: "CED coating, electroless nickel plating (ENP), chrome plating, and powder coating." },
   { title: "Material Expertise", desc: "SS 316L, Inconel, MS, hardened steel, copper, brass, and aluminum alloys." },
   { title: "Quality Systems", desc: "SPC-controlled processes with IATF-aligned documentation and full traceability." },
-  { title: "Prototyping", desc: "Rapid first-article development with iterative DFM feedback loops." },
+  { title: "Tool Resharpening", desc: "Factory-grade re-conditioning, grinding, and re-tipping services to restore cutting tools to original OEM tolerances." },
 ];
 
 const Services = () => (
@@ -38,7 +38,7 @@ const Services = () => (
       {/* Detailed capabilities */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <h2 className="font-heading text-3xl font-bold mb-12 text-center">Technical Capabilities</h2>
+          <h2 className="font-heading text-3xl font-bold mb-12 text-center">Machining Capabilities</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {capabilities.map((c, i) => (
               <motion.div
