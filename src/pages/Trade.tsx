@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import { motion } from "framer-motion";
-import { Eye, Target, Heart, Package } from "lucide-react";
+import { Package } from "lucide-react";
 import sector1 from "@/assets/sector-1.png";
 import sector2 from "@/assets/sector-2.png";
 import sector3 from "@/assets/sector-3.png";
@@ -56,13 +56,14 @@ const products = [
   },
 ];
 
+// Swapped items 4 and 5 here so descriptions align perfectly with your source graphics
 const sectors = [
-  { src: sector1, alt: "Sector 1" },
-  { src: sector2, alt: "Sector 2" },
-  { src: sector3, alt: "Sector 3" },
-  { src: sector4, alt: "Sector 4" },
-  { src: sector5, alt: "Sector 5" },
-  { src: sector6, alt: "Sector 6" },
+  { src: sector1, label: "Automotive Industry" },
+  { src: sector2, label: "Aerospace & Defence" },
+  { src: sector3, label: "Railway & Infrastructure" },
+  { src: sector4, label: "Fabrication & General Engineering" }, // Index 3 matches your welder image 
+  { src: sector5, label: "Marine Industry" },                  // Index 4 matches your cargo ship image
+  { src: sector6, label: "Oil Industry" },
 ];
 
 const customers = [
@@ -201,14 +202,24 @@ const Trade = () => (
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="aspect-[4/3] rounded-lg overflow-hidden border border-border bg-card"
+                className="aspect-[4/3] rounded-lg overflow-hidden border border-border bg-card relative group"
               >
                 <img
                   src={s.src}
-                  alt={s.alt}
+                  alt={s.label}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
+                
+                {/* 🌌 Vignette Mask: Dark layer built right on top of the image container to isolate white lettering */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 transition-opacity duration-300 group-hover:from-black/95" />
+                
+                {/* 📌 Inner Text Label Wrapper positioning text exactly bottom-left */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 z-10 pointer-events-none">
+                  <h3 className="font-heading text-base md:text-lg font-bold text-white tracking-wide transition-colors group-hover:text-primary">
+                    {s.label}
+                  </h3>
+                </div>
               </motion.div>
             ))}
           </div>
