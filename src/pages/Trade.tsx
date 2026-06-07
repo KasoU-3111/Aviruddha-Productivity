@@ -218,14 +218,22 @@ const Trade = () => (
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="aspect-[4/3] rounded-lg overflow-hidden border border-border bg-card"
+                className="group relative aspect-[4/3] rounded-lg overflow-hidden border border-border bg-card"
               >
                 <img
                   src={s.src}
                   alt={s.alt}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  width={1024}
+                  height={768}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                  <h3 className="font-heading text-lg md:text-xl font-bold text-foreground drop-shadow">
+                    {s.label}
+                  </h3>
+                </div>
               </motion.div>
             ))}
           </div>
