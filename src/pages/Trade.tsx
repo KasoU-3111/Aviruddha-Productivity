@@ -3,12 +3,12 @@ import Footer from "@/components/Footer";
 
 import { motion } from "framer-motion";
 import { Eye, Target, Heart, Package } from "lucide-react";
-import sector1 from "@/assets/sector-1.png";
-import sector2 from "@/assets/sector-2.png";
-import sector3 from "@/assets/sector-3.png";
-import sector4 from "@/assets/sector-4.png";
-import sector5 from "@/assets/sector-5.png";
-import sector6 from "@/assets/sector-6.png";
+import sectorAutomotive from "@/assets/sectors/automotive.jpg";
+import sectorAerospace from "@/assets/sectors/aerospace.jpg";
+import sectorRailway from "@/assets/sectors/railway.jpg";
+import sectorMarine from "@/assets/sectors/marine.jpg";
+import sectorFabrication from "@/assets/sectors/fabrication.jpg";
+import sectorOil from "@/assets/sectors/oil.jpg";
 import logoTata from "@/assets/clients/Tata_logo.jpg";
 import logoTataGe from "@/assets/clients/Tata_GE_logo.jpg";
 import logoSail from "@/assets/clients/Sail_Steel_Authority_of_India_logo.jpg";
@@ -69,12 +69,12 @@ const products = [
 ];
 
 const sectors = [
-  { src: sector1, alt: "Sector 1" },
-  { src: sector2, alt: "Sector 2" },
-  { src: sector3, alt: "Sector 3" },
-  { src: sector4, alt: "Sector 4" },
-  { src: sector5, alt: "Sector 5" },
-  { src: sector6, alt: "Sector 6" },
+  { src: sectorAutomotive, alt: "Automotive Industry", label: "Automotive Industry" },
+  { src: sectorAerospace, alt: "Aerospace & Defence", label: "Aerospace & Defence" },
+  { src: sectorRailway, alt: "Railway & Infrastructure", label: "Railway & Infrastructure" },
+  { src: sectorMarine, alt: "Marine Industry", label: "Marine Industry" },
+  { src: sectorFabrication, alt: "Fabrication & General Engineering", label: "Fabrication & General Engineering" },
+  { src: sectorOil, alt: "Oil Industry", label: "Oil Industry" },
 ];
 
 const customers = [
