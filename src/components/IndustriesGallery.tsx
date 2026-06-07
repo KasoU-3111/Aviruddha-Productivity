@@ -6,7 +6,7 @@ import imgFluid from "@/assets/industries/fluid-handling.jpg";
 import imgFood from "@/assets/industries/food-processing.jpg";
 import imgIndustrial from "@/assets/industries/industrial-equipment.jpg";
 import imgCopper from "@/assets/industries/copper-parts.jpg";
-// import imgResharpening from "@/assets/industries/resharpening.jpg"; // Asset path for the new service
+import imgResharpening from "@/assets/industries/resharpering-trade.png";
 
 const industries = [
   {
@@ -46,7 +46,7 @@ const industries = [
   },
   {
     icon: Wrench,
-    // image: imgResharpening,
+    image: imgResharpening,
     title: "Resharpening Trade",
     desc: "Factory-grade re-sharpening, re-tipping, and re-conditioning services to restore premium industrial cutting tools to original OEM performance specifications.",
     products: ["TCT Saw Re-Sharpening", "Re-Tipping Service", "Tool Re-Conditioning", "Performance Calibration"],
