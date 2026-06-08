@@ -17,6 +17,7 @@ import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { TradeGalleryModal } from "@/components/TradeGalleryModal";
 
 // Re-Bo
 import reboTopHss from "@/assets/trade/rebo/rebo-top-hss.jpg";
@@ -198,8 +199,8 @@ const brands: Brand[] = [
     ],
   },
   {
-    id: "kanefusa", // Kept ID consistent to avoid breaking layout anchors
-    name: "KWS", // Displays KWS on the website
+    id: "kanefusa",
+    name: "KWS",
     origin: "Made in Korea",
     tagline: "Precision Industrial Cutting Tools",
     about:
@@ -423,6 +424,7 @@ const ProductCard = ({
 
 const TradePortal = () => {
   const { toast } = useToast();
+  const [activeGalleryId, setActiveGalleryId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -580,16 +582,18 @@ const TradePortal = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="border-l-4 border-primary pl-6 mb-12"
+                  className="border-l-4 border-primary pl-6 mb-12 flex flex-col md:flex-row md:items-start md:justify-between gap-6"
                 >
-                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-2">
-                    <h3 className="font-heading text-3xl md:text-5xl font-bold">{brand.name}</h3>
-                    <span className="text-primary text-sm font-medium tracking-widest uppercase">
-                      {brand.origin}
-                    </span>
+                  <div className="max-w-3xl">
+                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-2">
+                      <h3 className="font-heading text-3xl md:text-5xl font-bold">{brand.name}</h3>
+                      <span className="text-primary text-sm font-medium tracking-widest uppercase">
+                        {brand.origin}
+                      </span>
+                    </div>
+                    <p className="text-foreground/80 text-lg font-medium mb-2">{brand.tagline}</p>
+                    <p className="text-muted-foreground leading-relaxed">{brand.about}</p>
                   </div>
-                  <p className="text-foreground/80 text-lg font-medium mb-2">{brand.tagline}</p>
-                  <p className="text-muted-foreground max-w-3xl leading-relaxed">{brand.about}</p>
                 </motion.div>
 
                 {/* Categories */}
@@ -613,6 +617,23 @@ const TradePortal = () => {
                     </div>
                   </div>
                 ))}
+
+                {/* 🛠️ Brand Gallery trigger button moved beautifully to the end of each company segment */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="mt-8 flex justify-end"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setActiveGalleryId(brand.id)}
+                    className="inline-flex items-center justify-center gap-2 border border-primary/40 hover:border-primary bg-primary/5 hover:bg-primary text-foreground hover:text-primary-foreground px-6 py-3 rounded-lg text-sm font-bold transition-all group shadow-sm"
+                  >
+                    <ImageIcon className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" />
+                    View {brand.name} Product Gallery
+                  </button>
+                </motion.div>
 
                 {idx < brands.length - 1 && (
                   <div className="mt-24 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -696,8 +717,8 @@ const TradePortal = () => {
 
             {/* Direct contact */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="glass-card p-8 lg:p-10"
             >
@@ -708,23 +729,15 @@ const TradePortal = () => {
               <p className="text-muted-foreground mb-8">Director — Aviruddha Productivity Pvt. Ltd.</p>
 
               <div className="space-y-5">
-                <a href="tel:+917420916314" className="flex items-start gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <Phone className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-0.5">Phone</p>
-                    <p className="font-medium group-hover:text-primary transition-colors">+91 74209 16314</p>
-                  </div>
-                </a>
 
-                <a href="mailto:ganesh@aviruddha.com" className="flex items-start gap-4 group">
+
+                <a href="mailto:info@aviruddha.com" className="flex items-start gap-4 group">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-wider text-muted-foreground mb-0.5">Email</p>
-                    <p className="font-medium group-hover:text-primary transition-colors">ganesh@aviruddha.com</p>
+                    <p className="font-medium group-hover:text-primary transition-colors">info@aviruddha.com</p>
                   </div>
                 </a>
 
@@ -786,6 +799,14 @@ const TradePortal = () => {
           </div>
         </section>
       </main>
+
+      {/* 🖼️ Mount the custom overlay pipeline layer securely here */}
+      <TradeGalleryModal
+        brandId={activeGalleryId}
+        brandName={brands.find((b) => b.id === activeGalleryId)?.name || ""}
+        onClose={() => setActiveGalleryId(null)}
+      />
+
       <Footer />
     </>
   );
