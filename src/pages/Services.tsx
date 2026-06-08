@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServicesOverview from "@/components/ServicesOverview";
+import CompanyGallery from "@/components/CompanyGallery";
 import CTASection from "@/components/CTASection";
 import { motion } from "framer-motion";
 import servicesImg from "@/assets/services-quality.jpg";
@@ -58,6 +59,7 @@ const Services = () => (
       </section>
 
       <ServicesOverview />
+      <CompanyGallery />
       <CTASection />
     </main>
     <Footer />

@@ -37,8 +37,8 @@ const products = [
     lines: ["Internal Scarfing Tools", "External Scarfing & Peeling Inserts", "Impeders & Ferrite Rods", "Forming & Sizing Rolls"]
   },
   {
-    brand: "KSW",
-    origin: "Made in Japan",
+    brand: "KWS",
+    origin: "Made in Korea",
     body: "Precision industrial cutting tools designed for high-volume manufacturing and material processing.",
     lines: ["TCT Circular Saws", "Billet & Bloom Saws", "Continuous Friction Blades", "Industrial Processing Knives"]
   },

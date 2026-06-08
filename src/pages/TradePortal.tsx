@@ -199,11 +199,11 @@ const brands: Brand[] = [
   },
   {
     id: "kanefusa", // Kept ID consistent to avoid breaking layout anchors
-    name: "KSW", // Displays KSW on the website
-    origin: "Made in Japan",
+    name: "KWS", // Displays KWS on the website
+    origin: "Made in Korea",
     tagline: "Precision Industrial Cutting Tools",
     about:
-      "KSW (Japan) is a world-leading manufacturer of precision industrial cutting tools — TCT circular saws, metal-cutting blades, knives and tooling for wood, metal, paper, plastics and composite processing industries.",
+      "KWS (Korea) is a world-leading manufacturer of precision industrial cutting tools — TCT circular saws, metal-cutting blades, knives and tooling for wood, metal, paper, plastics and composite processing industries.",
     categories: [
       {
         title: "Precision Cutting Tools",
