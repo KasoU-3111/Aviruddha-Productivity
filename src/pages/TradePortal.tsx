@@ -19,6 +19,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { TradeGalleryModal } from "@/components/TradeGalleryModal";
 
+// Privacy Policy Document
+import privacyPolicyPdf from "@/assets/privacy-policies.pdf";
+
 // Re-Bo
 import reboTopHss from "@/assets/trade/rebo/rebo-top-hss.jpg";
 import reboHssDin from "@/assets/trade/rebo/rebo-hss-din.jpg";
@@ -447,10 +450,10 @@ const TradePortal = () => {
     // Identify the brand based on product
     let brandName = "Trade Inquiry";
     for (const b of brands) {
-        if (b.categories.some(cat => cat.products.some(p => p.name === form.product))) {
-            brandName = b.name;
-            break;
-        }
+      if (b.categories.some((cat) => cat.products.some((p) => p.name === form.product))) {
+        brandName = b.name;
+        break;
+      }
     }
 
     try {
@@ -464,7 +467,7 @@ const TradePortal = () => {
           email: form.email,
           brand: brandName,
           product_name: form.product,
-          quantity: 1, 
+          quantity: 1,
           message: `${form.company ? `Company: ${form.company}. ` : ""}${form.message}`,
         }),
       });
@@ -618,7 +621,7 @@ const TradePortal = () => {
                   </div>
                 ))}
 
-                {/* 🛠️ Brand Gallery trigger button moved beautifully to the end of each company segment */}
+                {/* Brand Gallery trigger button */}
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -712,6 +715,21 @@ const TradePortal = () => {
                 >
                   <Send className="w-4 h-4" /> {loading ? "Sending..." : "Submit Inquiry"}
                 </button>
+
+                {/* Data Privacy & Policy Disclaimer Link */}
+                <p className="text-xs text-muted-foreground pt-2 leading-relaxed">
+                  Your information is secure with us. Learn{" "}
+                  <a
+                    href={privacyPolicyPdf}
+                    download="Aviruddha_Privacy_and_Data_Usage_Policy.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-4 hover:text-primary/80 font-medium transition-colors"
+                  >
+                    how we use your data
+                  </a>
+                  .
+                </p>
               </form>
             </motion.div>
 
@@ -729,8 +747,6 @@ const TradePortal = () => {
               <p className="text-muted-foreground mb-8">Director — Aviruddha Productivity Pvt. Ltd.</p>
 
               <div className="space-y-5">
-
-
                 <a href="mailto:info@aviruddha.com" className="flex items-start gap-4 group">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Mail className="w-5 h-5 text-primary" />
@@ -800,7 +816,7 @@ const TradePortal = () => {
         </section>
       </main>
 
-      {/* 🖼️ Mount the custom overlay pipeline layer securely here */}
+      {/* Mount the custom overlay pipeline layer */}
       <TradeGalleryModal
         brandId={activeGalleryId}
         brandName={brands.find((b) => b.id === activeGalleryId)?.name || ""}

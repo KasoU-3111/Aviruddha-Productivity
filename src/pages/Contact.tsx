@@ -1,9 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin, Clock } from "lucide-react";
+import { Mail, MapPin, Linkedin, Clock } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+
+// Privacy Policy Document
+import privacyPolicyPdf from "@/assets/privacy-policies.pdf";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -124,6 +127,21 @@ const Contact = () => {
                     >
                       {loading ? "Submitting..." : "Submit Inquiry"}
                     </button>
+
+                    {/* Data Privacy & Policy Disclaimer Link */}
+                    <p className="text-xs text-muted-foreground text-center pt-1 leading-relaxed">
+                      Your information is secure with us. Learn{" "}
+                      <a
+                        href={privacyPolicyPdf}
+                        download="Aviruddha_Privacy_and_Data_Usage_Policy.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary underline underline-offset-4 hover:text-primary/80 font-medium transition-colors"
+                      >
+                        how we use your data
+                      </a>
+                      .
+                    </p>
                   </form>
                 )}
               </motion.div>
